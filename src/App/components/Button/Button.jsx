@@ -1,4 +1,4 @@
-import './Button.css';
+import style from './Button.module.css';
 import PropTypes from 'prop-types';
 import {useState} from 'react';
 export const uneVar = 'Hello';
@@ -12,7 +12,7 @@ export const uneVar = 'Hello';
 function Button(props) {
 	const [isClicked, setisClicked] = useState(false);
 	return (
-		<button style={{...props.style, backgroundColor:props.bgColor}} className={"Button"+(isClicked?' clicked':'')} 
+		<button style={{...props.style, backgroundColor:props.bgColor}} className={style.Button+(isClicked?' '+style.clicked:'')} type={props.type}
 			onClick={(evt)=>{
 				setisClicked(true)
 				setTimeout(()=>{
@@ -30,11 +30,13 @@ function Button(props) {
 Button.propTypes={
   children:PropTypes.any.isRequired,
   action:PropTypes.func.isRequired,
-  bgColor:PropTypes.string
+  bgColor:PropTypes.string,
+  type:PropTypes.string,
 }
 
 Button.defaultProps={
-	bgColor: '#0033BB'
+	bgColor: '#0033BB',
+	action:() => {},
 }
 
 export default Button;

@@ -1,0 +1,25 @@
+{
+	"memes": [
+		{
+			"id": 0,
+			"titre": "meme",
+			"text": "Mon meme2",
+			"x": 90,
+			"y": 100,
+			"color": "#FF0000",
+			"underline": false,
+			"weight": "900",
+			"imageId": 1,
+			"fsize": 40
+		}
+	],
+	"images": [
+		{
+			"height": 420,
+			"width": 640,
+			"id": 0,
+			"img": "/img/futurama.jpg",
+			"titre": "futurama 0"
+		}
+	]
+}

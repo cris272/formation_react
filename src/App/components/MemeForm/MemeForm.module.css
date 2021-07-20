@@ -1,0 +1,21 @@
+.MemeForm{
+	width: 40%;
+	margin:auto;
+	display:inline-block;
+	padding:20px;
+}
+.inlineDisplayer{
+	display:inline-block;
+}
+.smallNumber{
+	width:64px;
+}
+.centerBig{
+	width: 60%;
+	margin:auto;
+}
+
+.inputLabel{
+	display: inline-block;
+	width:110px;
+}

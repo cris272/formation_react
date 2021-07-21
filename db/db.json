@@ -1,25 +1,70 @@
 {
-	"memes": [
-		{
-			"id": 0,
-			"titre": "meme",
-			"text": "Mon meme2",
-			"x": 90,
-			"y": 100,
-			"color": "#FF0000",
-			"underline": false,
-			"weight": "900",
-			"imageId": 1,
-			"fsize": 40
-		}
-	],
-	"images": [
-		{
-			"height": 420,
-			"width": 640,
-			"id": 0,
-			"img": "/img/futurama.jpg",
-			"titre": "futurama 0"
-		}
-	]
+  "memes": [
+    {
+      "id": 0,
+      "titre": "meme",
+      "text": "Mon meme 1",
+      "x": 90,
+      "y": 100,
+      "color": "#FF0000",
+      "underline": false,
+      "weight": "900",
+      "imageId": 0,
+      "fsize": 40
+    },
+    {
+      "titre": "meme",
+      "text": "2222222",
+      "x": 90,
+      "y": 100,
+      "color": "#0000FF",
+      "underline": false,
+      "weight": "900",
+      "imageId": 1,
+      "fsize": 40,
+      "id": 1
+    },
+    {
+      "titre": "meme",
+      "text": "33333",
+      "x": 90,
+      "y": 100,
+      "color": "#00FF00",
+      "underline": false,
+      "weight": "900",
+      "imageId": 2,
+      "fsize": 40,
+      "id": 4
+    }
+  ],
+  "images": [
+    {
+      "height": 420,
+      "width": 640,
+      "id": 0,
+      "img": "/img/futurama.jpg",
+      "titre": "Fry Futurama"
+    },
+    {
+      "height": 727,
+      "width": 768,
+      "id": 1,
+      "img": "/img/cantargue.jpg",
+      "titre": "Can't argue"
+    },
+    {
+      "height": 495,
+      "width": 880,
+      "id": 2,
+      "img": "/img/harold.jpg",
+      "titre": "Harold"
+    },
+    {
+      "height": 347,
+      "width": 670,
+      "id": 3,
+      "img": "/img/ikilledaman.jpg",
+      "titre": "I killed a man"
+    }
+  ]
 }

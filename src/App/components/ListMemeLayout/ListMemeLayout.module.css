@@ -1,0 +1,15 @@
+.ListMemeLayout {
+	display: flex;
+	flex-wrap:wrap
+}
+
+/* .ListMemeLayout svg{
+	height: 300px;
+} */
+
+.ListMemeLayout > *{
+	flex:1;
+	max-height: 33%;
+	max-width: 27%;
+	min-height: 10%;
+}

@@ -1,0 +1,9 @@
+.MainLayout {
+	height: 80vh;
+	width: 100%;
+	display: flex;
+}
+
+.MainLayout:nth-child(1){
+	flex-grow: 1;
+}

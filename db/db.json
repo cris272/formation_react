@@ -35,6 +35,30 @@
       "imageId": 2,
       "fsize": 40,
       "id": 4
+    },
+    {
+      "titre": "nouveau meme",
+      "text": "Mon meme6",
+      "x": "269",
+      "y": "287",
+      "color": "#1a1818",
+      "underline": false,
+      "weight": "900",
+      "imageId": 3,
+      "fsize": "16",
+      "id": 5
+    },
+    {
+      "titre": "5",
+      "text": "Mon meme2",
+      "x": 90,
+      "y": 100,
+      "color": "#e5a50a",
+      "underline": false,
+      "weight": "900",
+      "imageId": 0,
+      "fsize": 40,
+      "id": 6
     }
   ],
   "images": [

@@ -1,8 +1,9 @@
 .MemeForm{
-	width: 40%;
-	margin:auto;
+	/* width: 40%; */
+	/* margin:auto; */
 	display:inline-block;
 	padding:20px;
+	border: 1px solid grey;
 }
 .inlineDisplayer{
 	display:inline-block;
@@ -18,4 +19,14 @@
 .inputLabel{
 	display: inline-block;
 	width:110px;
+}
+
+.MemeForm input{
+	width: 200px;
+	padding:5px;
+}
+
+.MemeForm select{
+	width: 215px;
+	padding:5px;
 }

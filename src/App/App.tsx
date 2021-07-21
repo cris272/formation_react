@@ -1,6 +1,13 @@
 import * as React from 'react';
 import MemeViewer from './components/MemeViewer/MemeViewer';
 import MemeForm from './components/MemeForm/MemeForm';
+import MainLayout from './components/MainLayout/MainLayout';
+import ListMemeLayout from './components/ListMemeLayout/ListMemeLayout';
+import NavbarNoCmp from './components/NavbarNoCmp/NavbarNoCmp';
+import {Link, Switch, Route} from 'react-router-dom';
+// import MemeEditorLoader from './components/MemeEditorLoader/MemeEditorLoader';
+import {initialState, listInitialState, store} from './store/store'
+
 export interface IMemeImage{
     id:number;
     img:string;
@@ -31,44 +38,61 @@ export interface IAppState {
     images:Array<IMemeImage>;
 }
 
-const initialState={
-    currentMeme:{
-		titre:'meme',
-		text:'Mon meme2',
-		x:90,
-		y:100,
-		color:'#FF0000',
-		underline:false,
-		weight:'900',
-		imageId:1,
-		fsize:40,
-	},
-    memes:[],
-    images:[
-        {height:420, width:640, id:0, img:"/img/futurama.jpg", titre:"futurama 0"},
-        {height:420, width:640, id:1, img:"/img/futurama.jpg", titre:"futurama 1"},
-        {height:420, width:640, id:2, img:"/img/futurama2.jpg", titre:"futurama 2"},
-    ]
-}
+
 export default class App extends React.Component<IAppProps, IAppState> {
   constructor(props: IAppProps) {
     super(props);
 
-    this.state = initialState;
+    this.state = {...initialState, ...listInitialState};
     
   }
 
   componentDidMount(){
-      console.log('le composant App est monté');
-      
+		this.setState({...store.getState().current, ...store.getState().lists});
+		store.subscribe(()=>{
+			console.log('App subscribe')
+			this.setState({...store.getState().current, ...store.getState().lists});
+		});
   }
 
   public render() {
     return (
-      <div className="App" data-testid="App">
-        <MemeForm meme={this.state.currentMeme} images={this.state.images} onChangeInForm={(meme)=>{this.setState({currentMeme:meme})}}/>
-        <MemeViewer meme={this.state.currentMeme} image={this.state.images.find(e=>{return e.id===this.state.currentMeme.imageId})}/>
-      </div>
+        <>
+            <NavbarNoCmp />
+            <div className="App" data-testid="App">
+				<Switch>
+					<Route path="/" exact>
+						Hello world
+					</Route>
+					<Route path="/thumbnail" >
+						<ListMemeLayout>
+						{this.state.memes.map((e,i)=>{
+							return (
+							<Link key={'meme-'+i} to={"/editor/"+e.id}>
+								<MemeViewer meme={e} image={this.state.images.find(e2=>{return e2.id===e.imageId})}/>
+							</Link>
+							)
+						})}
+						</ListMemeLayout>
+					</Route>
+					<Route path="/editor/:id" >
+						<MainLayout>
+							<MemeForm/>
+							<MemeViewer meme={this.state.currentMeme} image={this.state.images.find(e=>{return e.id===this.state.currentMeme.imageId})}/>
+						</MainLayout>
+					</Route>
+					<Route path="/editor" >
+						<MainLayout>
+							<MemeForm/>
+							<MemeViewer meme={this.state.currentMeme} image={this.state.images.find(e=>{return e.id===this.state.currentMeme.imageId})}/>
+						</MainLayout>
+					</Route>
+					<Route path="/" >
+						404
+					</Route>
+				</Switch>
+            </div>
+        </>
     );
   }
 }

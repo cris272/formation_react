@@ -1,20 +1,47 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import style from './MemeForm.module.css'
 import PropTypes from 'prop-types';
 import Button from '../Button/Button';
+import {initialState, store, listInitialState} from '../../store/store'
+import {useParams, withRouter} from 'react-router-dom';
 
 
 const MemeForm = (props) => {
-	const [formstate, setformstate] = useState(props.meme);
+	const [formstate, setformstate] = useState(store.getState().current.currentMeme);
+	useEffect(() => {
+		store.subscribe(() =>{
+			setformstate(store.getState().current.currentMeme);
+		})
+	}, [store]);
+
+	useEffect(() => {
+		store.dispatch({type:'SET_CURRENT_MEME', value:formstate})
+	}, [formstate]);
+
+	useEffect(() => {
+		const foundMemeById = store.getState().lists.memes.find(e=>e.id===Number(props.match.params.id));
+		setformstate(foundMemeById?foundMemeById:initialState.currentMeme);
+		console.log(store.getState().current.currentMeme);
+	}, [store.getState().lists.memes]);
+
+
+
+
+
 	return (
-		<form className={style.MemeForm} style={formstate.style} data-testid="MemeForm"
+		<form className={style.MemeForm} style={props.style} data-testid="MemeForm"
 			onSubmit={(evt)=>{
 				evt.preventDefault();
-				console.log(formstate);
-				props.onChangeInForm(formstate);
+				store.dispatch({type:'SAVE_CURRENT_MEME'});
+				props.history.push('/thumbnail/')
+			}}
+
+			onReset={(evt)=>{
+				setformstate(initialState.currentMeme);
+				// props.onChangeInForm(formstate);
 			}}
 		>
-			{JSON.stringify(formstate)}
+			{/* {JSON.stringify(formstate)} */}
 			<h2>Editor</h2>
 			<div>
 				<span className={style.inputLabel}>Nom du meme</span>
@@ -33,7 +60,7 @@ const MemeForm = (props) => {
 					<option value={-1}>
 						No img
 					</option>
-					{props.images.map((e,i)=>{
+					{store.getState().lists.images.map((e,i)=>{
 						return <option key={'img-selector-'+i} value={e.id}>{e.titre}</option>
 					})}
 				</select>
@@ -94,7 +121,10 @@ const MemeForm = (props) => {
 
 			<div>
 				<span className={style.inputLabel}>Color</span>
-				<input type="color" style={{width:'80%'}} value={formstate.color}
+				<input 
+					type="color" 
+					style={{width:'80%'}} 
+					value={formstate.color}
 					onChange={(evt)=>{
 						setformstate({...formstate, color:evt.target.value})
 					}}
@@ -110,10 +140,7 @@ const MemeForm = (props) => {
 
 MemeForm.propTypes = {
 	style:PropTypes.object,
-	meme:PropTypes.object.isRequired,
-	images:PropTypes.array.isRequired,
-	onChangeInForm:PropTypes.func.isRequired,
 };
 
 
-export default MemeForm;
+export default withRouter(MemeForm);

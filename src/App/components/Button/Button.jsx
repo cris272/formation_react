@@ -20,7 +20,7 @@ function Button(props) {
 
 				}, 300)
 				props.action('test 1')
-			}}>
+			}} data-testid="Button">
 			{props.children}
 		</button>
 	);
